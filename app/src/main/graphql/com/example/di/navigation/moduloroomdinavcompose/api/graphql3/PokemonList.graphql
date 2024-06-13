@@ -1,0 +1,9 @@
+query PokemonList {
+    pokemon_v2_pokemon(limit: 10) {
+        height
+        id
+        name
+        order
+        pokemon_species_id
+    }
+}

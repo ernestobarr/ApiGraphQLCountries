@@ -1,0 +1,10 @@
+query RickMortyCharacter {
+    characters {
+        results {
+            id
+            name
+            status
+            species
+        }
+    }
+}

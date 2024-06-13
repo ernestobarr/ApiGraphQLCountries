@@ -1,0 +1,11 @@
+query FilmsList {
+    allFilms {
+        films {
+            title
+            episodeID
+            openingCrawl
+            director
+            releaseDate
+        }
+    }
+}

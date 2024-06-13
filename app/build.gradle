@@ -1,0 +1,242 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+
+    //DI
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+
+    //GraphQL
+    //Version 2 upgrade to version 3 (later)
+    id 'com.apollographql.apollo'
+
+}
+
+android {
+    namespace 'com.example.di.navigation.moduloroomdinavcompose'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.example.di.navigation.moduloroomdinavcompose"
+        minSdk 28
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        //kotlinCompilerExtensionVersion '1.1.1'
+        kotlinCompilerExtensionVersion '1.4.8'
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+}
+
+dependencies {
+
+
+    implementation 'androidx.core:core-ktx:1.8.22'
+    implementation project(path: ':app:libdb')
+    implementation project(path: ':libdbtwo')
+    implementation 'com.google.android.gms:play-services-basement:18.2.0'
+    //imp
+
+    def composeBom = platform('androidx.compose:compose-bom:2023.06.01')
+    implementation composeBom
+    androidTestImplementation composeBom
+
+    // Choose one of the following:
+    // Material Design 3
+    implementation 'androidx.compose.material3:material3'
+    // or Material Design 2
+    implementation 'androidx.compose.material:material'
+    // or skip Material Design and build directly on top of foundational components
+    implementation 'androidx.compose.foundation:foundation'
+    // or only import the main APIs for the underlying toolkit systems,
+    // such as input and measurement/layout
+    implementation 'androidx.compose.ui:ui'
+
+    // Android Studio Preview support
+    implementation 'androidx.compose.ui:ui-tooling-preview'
+    debugImplementation 'androidx.compose.ui:ui-tooling'
+
+    // UI Tests
+    androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
+    debugImplementation 'androidx.compose.ui:ui-test-manifest'
+
+    // Optional - Included automatically by material, only add when you need
+    // the icons but not the material library (e.g. when using Material3 or a
+    // custom design system based on Foundation)
+    implementation 'androidx.compose.material:material-icons-core'
+    // Optional - Add full set of material icons
+    implementation 'androidx.compose.material:material-icons-extended'
+    // Optional - Add window size utils
+    implementation 'androidx.compose.material3:material3-window-size-class'
+
+    // Optional - Integration with activities
+    implementation 'androidx.activity:activity-compose:1.7.2'
+    // Optional - Integration with ViewModels
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1'
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.1")
+    // Optional - Integration with LiveData
+    //implementation 'androidx.compose.runtime:runtime-livedata'
+    // Optional - Integration with RxJava
+    //implementation 'androidx.compose.runtime:runtime-rxjava2'
+
+    //Need to upgrade compiler and IDE.
+    //def nav_version = "2.7.0"
+    def nav_version = "2.6.0"
+
+    implementation "androidx.navigation:navigation-compose:$nav_version"
+
+    //Need to upgrade compiler and IDE.
+    //Bottom Navigation
+    //implementation "androidx.compose.material:material:1.5.0"
+    implementation "androidx.compose.material:material:1.4.3"
+
+
+/*
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
+    implementation 'androidx.activity:activity-compose:1.3.1'
+    implementation "androidx.compose.ui:ui:$compose_ui_version"
+    implementation "androidx.compose.ui:ui-tooling-preview:$compose_ui_version"
+    implementation 'androidx.compose.material:material:1.1.1'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_ui_version"
+    debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
+    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
+
+ */
+
+
+
+
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.6.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.6.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.3.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
+    //implementation 'androidx.activity:activity-compose:1.3.1'
+    //implementation "androidx.compose.ui:ui:$compose_ui_version"
+    //implementation "androidx.compose.ui:ui-tooling-preview:$compose_ui_version"
+    //implementation 'androidx.compose.material:material:1.1.1'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    //androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_ui_version"
+    //debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
+    //debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
+
+    //DI
+    implementation "com.google.dagger:hilt-android:2.44"
+    //DI  Navigation
+    implementation 'androidx.hilt:hilt-navigation-compose:1.0.0'
+
+    kapt "com.google.dagger:hilt-compiler:2.44"
+
+    //RoomLibraries
+    def room_version = "2.5.1"
+    implementation "androidx.room:room-ktx:$room_version"
+    implementation "androidx.room:room-common:$room_version"
+
+    //Coil
+    def coil_version = "2.4.0"
+    //implementation "io.coil-kt:coil:$coil_version"
+    implementation "io.coil-kt:coil-compose:$coil_version"
+
+
+    //API Retrofit
+    // retrofit
+
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+
+// GSON
+
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+
+// coroutine
+
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2"
+
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2"
+
+//GraphQL
+    //Upgrade later for version 3(stable)
+    implementation "com.apollographql.apollo:apollo-runtime:2.5.14"
+    // Coroutines extensions for easier asynchronicity handling
+    implementation "com.apollographql.apollo:apollo-coroutines-support:2.5.14"
+
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes true
+}
+
+
+//GraphQL
+//https://www.apollographql.com/docs/kotlin/v2
+
+apollo {
+
+    generateKotlinModels.set(true)
+
+    service("service") {
+        sourceFolder.set("com/example/di/navigation/moduloroomdinavcompose/api/graphql")
+        rootPackageName.set("com.example.di.navigation.moduloroomdinavcompose.api.graphql")
+    }
+    service("service2") {
+        sourceFolder.set("com/example/di/navigation/moduloroomdinavcompose/api/graphql2")
+        rootPackageName.set("com.example.di.navigation.moduloroomdinavcompose.api.graphql2")
+    }
+
+    service("service3") {
+        sourceFolder.set("com/example/di/navigation/moduloroomdinavcompose/api/graphql3")
+        rootPackageName.set("com.example.di.navigation.moduloroomdinavcompose.api.graphql3")
+    }
+
+    service("service4") {
+        sourceFolder.set("com/example/di/navigation/moduloroomdinavcompose/api/graphql4")
+        rootPackageName.set("com.example.di.navigation.moduloroomdinavcompose.api.graphql4")
+    }
+
+    service("service5") {
+        sourceFolder.set("com/example/di/navigation/moduloroomdinavcompose/api/graphql5")
+        rootPackageName.set("com.example.di.navigation.moduloroomdinavcompose.api.graphql5")
+    }
+
+    onCompilationUnit {
+        // Overwrite some options here for single CompilationUnit if needed
+    }
+
+}
